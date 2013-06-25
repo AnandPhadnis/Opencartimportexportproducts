@@ -1,0 +1,28 @@
+<modification>
+	<id>Export/Import Tool - OpenCart 1.5.3.x core file modifications</id>
+	<version>1.5.4.x</version>
+	<vqmver>1.1.0</vqmver>
+	<author>JNeuhoff</author>
+	<file name="admin/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['text_backup'] = $this->language->get('text_backup');]]></search>
+			<add><![CDATA[		$this->data['text_export'] = $this->language->get('text_export');]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$this->data['backup'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+			<add><![CDATA[			$this->data['export'] = $this->url->link('tool/export', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/english/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$_['text_backup']]]></search>
+			<add><![CDATA[$_['text_export']           = 'Export / Import';]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/header.tpl">
+		<operation>
+			<search position="after"><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>]]></search>
+			<add><![CDATA[        <li><a href="<?php echo $export; ?>"><?php echo $text_export; ?></a></li>]]></add>
+		</operation>
+	</file>
+</modification>
